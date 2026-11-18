@@ -2,6 +2,8 @@
 
 Sistema de monitorización industrial en Python: una planta simulada envía lecturas de sensores por **MQTT**, un colector las guarda en una base de datos y un modelo de **machine learning** detecta comportamientos anómalos que pueden anticipar una avería (mantenimiento predictivo).
 
+![Dashboard](docs/dashboard.png)
+
 > 🚧 Proyecto en desarrollo. Ver [hoja de ruta](#hoja-de-ruta).
 
 ## Arquitectura
@@ -17,7 +19,7 @@ Sistema de monitorización industrial en Python: una planta simulada envía lect
                                               │ (Streamlit)  │                 │
                                               └──────────────┘    ┌────────────┴─────┐
                                                                   │ Detector anomalías│
-                                                                  │  (scikit-learn)   │
+                                                                  │  (scikit-learn)   │   
                                                                   └──────────────────┘
 ```
 
@@ -97,11 +99,11 @@ Variables de entorno (todas opcionales):
 - [x] Envío de telemetría por MQTT
 - [x] Colector y almacenamiento en SQLite
 - [x] Docker Compose
-- [ ] Dashboard en Streamlit con estado de las máquinas
+- [x] Dashboard en Streamlit con estado de las máquinas
 - [ ] Detector de anomalías (Isolation Forest)
 - [ ] Modelo de predicción de fallos entrenado con el dataset AI4I 2020
 - [ ] Alertas en el dashboard
 
 ## Tecnologías
 
-Python · paho-mqtt · Mosquitto · SQLite · Docker
+Python · paho-mqtt · Mosquitto · SQLite · Docker · Streamlit · pandas
