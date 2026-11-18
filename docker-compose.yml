@@ -1,0 +1,28 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  simulator:
+    build: .
+    command: python -m monitor.simulator
+    environment:
+      MQTT_HOST: mosquitto
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
+
+  collector:
+    build: .
+    command: python -m monitor.collector
+    environment:
+      MQTT_HOST: mosquitto
+      DB_PATH: /app/data/readings.db
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
